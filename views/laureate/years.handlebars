@@ -1,0 +1,26 @@
+<div style="text-align: center; margin-bottom: 20px">
+    <h1>Years of Prizes</h1>
+    <select name="order" id="order" onchange="location = this.value">
+        <option selected disabled hidden>Choose order :</option>
+        <option value="/years">Years</option>
+        <option value="/years?sort=asc">ASC</option>
+        <option value="/years?sort=desc">DESC</option>
+    </select>
+</div>
+
+<table class="table table-hover table-sm table-bordered" style="width: 50%; text-align: center; margin-left: 25%">
+    <thead style="text-align: center">
+    <tr class="table-dark">
+        <th scope="col">Year</th>
+        <th scope="col">Number of Laureate</th>
+    </tr>
+    </thead>
+    <tbody>
+        {{#each years}}
+            <tr>
+                <td>{{this.year}}</td>
+                <td>{{this.nbLaureate}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

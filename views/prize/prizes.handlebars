@@ -1,0 +1,59 @@
+<div style="text-align: center; margin-bottom: 20px">
+    <h1>Prizes</h1>
+    <h6>{{nbPrizesOffered}} prizes where offered for {{nbLaureates}} laureates</h6>
+    <p>Category with the most laureate : <b>{{mostLaureateCategory}}</b></p>
+
+    <select name="severalPrizes" id="severalPrizes">
+        <option selected disabled hidden>Holder of several Prizes :</option>
+        {{#each severalPrizes}}
+            <option disabled>{{this.firstname}} {{this.surname}} ({{this.nbPrize}})</option>
+        {{/each}}
+    </select>
+
+    <select name="categories" id="categories" onchange="location = this.value">
+        <option selected disabled hidden>All Categories :</option>
+        <option value="/prizes">All</option>
+        {{#each categories}}
+            <option value="/prizes/{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+
+    <select name="years" id="years" onchange="location = this.value">
+        <option selected disabled hidden>All Years :</option>
+        <option value="/prizes">All</option>
+        {{#each years}}
+            <option value="/prizes/{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+
+    <select name="yearsWithoutLaureate" id="yearsWithoutLaureate" onchange="location = this.value">
+        <option selected disabled hidden>Years without Laureates :</option>
+        {{#each yearsWithoutLaureate}}
+            <option value="/prizes/{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+</div>
+<table class="table table-hover table-sm table-bordered">
+    <thead style="text-align: center">
+        <tr class="table-dark">
+            <th scope="col">Category</th>
+            <th scope="col">Year</th>
+            <th scope="col">OverallMotivation</th>
+            <th scope="col" style="text-align: left">Laureates</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each prizes}}
+        <tr>
+            <th scope="row">{{this.category}}</th>
+            <td>{{this.year}}</td>
+            <td>{{this.overallMotivation}}</td>
+            <td>
+                {{#each laureates}}
+                    <p style="margin: 0">({{this.id}}) <b>{{this.firstname}} {{this.surname}}</b> :"{{this.motivation}}" [{{this.share}}]</p>
+                {{/each}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
